@@ -1,127 +1,209 @@
+// Improved script.js (safe rendering, async/await, clean structure)
+
 const API_URL = "http://localhost:3000/movies";
 
 const movieListDiv = document.getElementById("movie-list");
 const searchInput = document.getElementById("search-input");
 const form = document.getElementById("add-movie-form");
 
+const editModal = document.getElementById("edit-modal");
+const editTitle = document.getElementById("edit-title");
+const editGenre = document.getElementById("edit-genre");
+const editYear = document.getElementById("edit-year");
+const saveEditBtn = document.getElementById("save-edit");
+const closeModalBtn = document.getElementById("close-modal");
+
 let allMovies = [];
 let currentEditId = null;
 
-// =============== RENDER MOVIES =================
+// Utility message
+function showMessage(msg) {
+  alert(msg);
+}
+
+// SAFE RENDERING
 function renderMovies(movies) {
   movieListDiv.innerHTML = "";
 
-  if (movies.length === 0) {
-    movieListDiv.innerHTML = "<p>No movies found.</p>";
+  if (!movies || movies.length === 0) {
+    const p = document.createElement("p");
+    p.textContent = "No movies found.";
+    movieListDiv.appendChild(p);
     return;
   }
 
   movies.forEach((m) => {
-    const div = document.createElement("div");
-    div.className = "movie";
+    const card = document.createElement("div");
+    card.className = "movie";
 
-    div.innerHTML = `
-      <strong>${m.title}</strong> (${m.year})<br>
-      <em>${m.genre}</em>
+    const titleEl = document.createElement("strong");
+    titleEl.textContent = m.title;
 
-      <div style="margin-top:8px;">
-        <button class="edit" onclick="editMovie(${m.id})">Edit</button>
-        <button class="delete" onclick="deleteMovie(${m.id})">Delete</button>
-      </div>
-    `;
+    const yearEl = document.createElement("div");
+    yearEl.textContent = `(${m.year})`;
 
-    movieListDiv.appendChild(div);
+    const genreEl = document.createElement("em");
+    genreEl.textContent = m.genre;
+
+    const controls = document.createElement("div");
+    controls.style.marginTop = "8px";
+
+    const editBtn = document.createElement("button");
+    editBtn.className = "edit";
+    editBtn.textContent = "Edit";
+    editBtn.addEventListener("click", () => openEditModal(m.id));
+
+    const delBtn = document.createElement("button");
+    delBtn.className = "delete";
+    delBtn.textContent = "Delete";
+    delBtn.addEventListener("click", () => deleteMovie(m.id));
+
+    controls.appendChild(editBtn);
+    controls.appendChild(delBtn);
+
+    card.appendChild(titleEl);
+    card.appendChild(yearEl);
+    card.appendChild(genreEl);
+    card.appendChild(controls);
+
+    movieListDiv.appendChild(card);
   });
 }
 
-// =============== FETCH ALL MOVIES =================
-function fetchMovies() {
-  fetch(API_URL)
-    .then((res) => res.json())
-    .then((data) => {
-      allMovies = data;
-      renderMovies(allMovies);
-    });
+// FETCH ALL MOVIES
+async function fetchMovies() {
+  try {
+    const res = await fetch(API_URL);
+    if (!res.ok) throw new Error("Failed to fetch movies");
+
+    const data = await res.json();
+    allMovies = Array.isArray(data) ? data : [];
+
+    renderMovies(allMovies);
+  } catch (err) {
+    console.error(err);
+    showMessage("Error fetching movies. Check JSON server.");
+  }
 }
 
 fetchMovies();
 
-// =============== SEARCH MOVIES =================
+// SEARCH
 searchInput.addEventListener("input", () => {
-  const s = searchInput.value.toLowerCase();
-  const filtered = allMovies.filter(
-    (m) =>
-      m.title.toLowerCase().includes(s) ||
-      m.genre.toLowerCase().includes(s)
-  );
+  const s = searchInput.value.trim().toLowerCase();
+
+  const filtered = allMovies.filter((m) => {
+    const title = (m.title || "").toLowerCase();
+    const genre = (m.genre || "").toLowerCase();
+    const year = String(m.year || "").toLowerCase();
+    return title.includes(s) || genre.includes(s) || year.includes(s);
+  });
+
   renderMovies(filtered);
 });
 
-// =============== ADD MOVIE =================
-form.addEventListener("submit", (e) => {
+// ADD MOVIE
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const title = document.getElementById("title").value.trim();
   const genre = document.getElementById("genre").value.trim();
-  const year = parseInt(document.getElementById("year").value);
+  const year = parseInt(document.getElementById("year").value, 10);
 
-  if (!title || !genre || !year) {
-    alert("Please fill all fields correctly.");
+  if (!title || !genre || Number.isNaN(year)) {
+    showMessage("Fill all fields correctly (Year must be number)");
     return;
   }
 
   const newMovie = { title, genre, year };
 
-  fetch(API_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newMovie),
-  }).then(() => {
+  try {
+    const res = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newMovie),
+    });
+
+    if (!res.ok) throw new Error("Failed to add movie");
+
     form.reset();
     fetchMovies();
-  });
+  } catch (err) {
+    console.error(err);
+    showMessage("Failed to add movie.");
+  }
 });
 
-// =============== EDIT MOVIE =================
-function editMovie(id) {
+// OPEN EDIT MODAL
+function openEditModal(id) {
   const movie = allMovies.find((m) => m.id === id);
-
-  document.getElementById("edit-title").value = movie.title;
-  document.getElementById("edit-genre").value = movie.genre;
-  document.getElementById("edit-year").value = movie.year;
+  if (!movie) return showMessage("Movie not found");
 
   currentEditId = id;
-  document.getElementById("edit-modal").style.display = "flex";
+  editTitle.value = movie.title;
+  editGenre.value = movie.genre;
+  editYear.value = movie.year;
+
+  editModal.style.display = "flex";
+  setTimeout(() => editTitle.focus(), 50);
 }
 
-// Close modal
-document.getElementById("close-modal").onclick = () => {
-  document.getElementById("edit-modal").style.display = "none";
+// CLOSE MODAL
+closeModalBtn.onclick = () => {
+  editModal.style.display = "none";
 };
 
-// Save edit
-document.getElementById("save-edit").onclick = () => {
+// CLOSE ON BACKDROP CLICK
+editModal.addEventListener("click", (e) => {
+  if (e.target === editModal) editModal.style.display = "none";
+});
+
+// CLOSE ON ESC
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") editModal.style.display = "none";
+});
+
+// SAVE EDIT
+saveEditBtn.onclick = async () => {
+  if (!currentEditId) return;
+
   const updated = {
-    title: document.getElementById("edit-title").value,
-    genre: document.getElementById("edit-genre").value,
-    year: parseInt(document.getElementById("edit-year").value),
+    title: editTitle.value.trim(),
+    genre: editGenre.value.trim(),
+    year: parseInt(editYear.value, 10),
   };
 
-  fetch(`${API_URL}/${currentEditId}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(updated),
-  }).then(() => {
-    document.getElementById("edit-modal").style.display = "none";
+  if (!updated.title || !updated.genre || Number.isNaN(updated.year)) {
+    return showMessage("Fill edit fields correctly");
+  }
+
+  try {
+    const res = await fetch(`${API_URL}/${currentEditId}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updated),
+    });
+
+    if (!res.ok) throw new Error("Update failed");
+
+    editModal.style.display = "none";
     fetchMovies();
-  });
+  } catch (err) {
+    console.error(err);
+    showMessage("Failed to update movie.");
+  }
 };
 
-// =============== DELETE MOVIE =================
-function deleteMovie(id) {
+// DELETE MOVIE
+async function deleteMovie(id) {
   if (!confirm("Delete this movie?")) return;
 
-  fetch(`${API_URL}/${id}`, {
-    method: "DELETE",
-  }).then(() => fetchMovies());
+  try {
+    const res = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+    if (!res.ok) throw new Error("Delete failed");
+    fetchMovies();
+  } catch (err) {
+    console.error(err);
+    showMessage("Failed to delete movie.");
+  }
 }
