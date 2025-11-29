@@ -1,40 +1,7 @@
 {
-  "movies": [
-    {
-      "id": 1,
-      "title": "Inception",
-      "genre": "Sci-Fi",
-      "year": 2010
-    },
-    {
-      "id": 2,
-      "title": "Pulp Fiction",
-      "genre": "Crime",
-      "year": 1994
-    },
-    {
-      "id": 3,
-      "title": "Dune",
-      "genre": "Sci-Fi",
-      "year": 2021
-    },
-    {
-      "id": "71de",
-      "title": "Pathaan",
-      "genre": "Action",
-      "year": 2023
-    },
-    {
-      "id": "35ba",
-      "title": "Jawaan",
-      "genre": "Action",
-      "year": 2023
-    },
-    {
-      "id": "0868",
-      "title": "Brahmastra",
-      "genre": "Action",
-      "year": 2022
-    }
-  ]
+"movies": [
+{ "id": 1, "title": "Inception", "genre": "Sci-Fi", "year": 2010 },
+{ "id": 2, "title": "Pulp Fiction", "genre": "Crime", "year": 1994 },
+{ "id": 3, "title": "Dune", "genre": "Sci-Fi", "year": 2021 }
+]
 }
