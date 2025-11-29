@@ -1,0 +1,147 @@
+/* === Dark Mode Styles === */
+body {
+  font-family: Arial, sans-serif;
+  max-width: 900px;
+  margin: 20px auto;
+  background: #121212;
+  color: #e0e0e0;
+}
+
+h1 { 
+  text-align: center; 
+  margin-bottom: 20px; 
+  color: #ffffff;
+}
+
+/* Form and Search */
+.form, .search-box { 
+  display: flex; 
+  gap: 10px; 
+  margin-bottom: 20px; 
+}
+
+.form input, .search-box { 
+  padding: 8px; 
+  border-radius: 5px; 
+  border: 1px solid #555; 
+  background: #1e1e1e; 
+  color: #fff;
+}
+
+::placeholder {
+  color: #bbb;
+  opacity: 1;
+}
+
+.form button { 
+  padding: 8px 12px; 
+  border: none; 
+  border-radius: 5px; 
+  background: #1f80e0; 
+  color: white; 
+  cursor: pointer; 
+  transition: transform 0.2s, opacity 0.2s;
+}
+.form button:hover { 
+  background: #1662b0; 
+  transform: translateY(-2px);
+}
+
+/* Movie List */
+.movie-list { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+  gap: 15px; 
+}
+
+.movie {
+  background: #1e1e1e;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.2s;
+}
+.movie:hover {
+  transform: translateY(-3px);
+}
+
+.movie strong { color: #ffcc00; }
+.movie em { color: #ccc; }
+
+.movie button { 
+  padding: 5px 8px; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  transition: transform 0.2s, opacity 0.2s; 
+}
+.movie button.edit { 
+  background: #ffc107; 
+  color: #333; 
+}
+.movie button.delete { 
+  background: #dc3545; 
+  color: white; 
+}
+.movie button:hover { 
+  opacity: 0.9; 
+  transform: translateY(-1px);
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 12px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #e0e0e0;
+}
+
+.modal-content input { 
+  padding: 6px; 
+  border-radius: 5px; 
+  border: 1px solid #555; 
+  background: #121212; 
+  color: #fff;
+}
+
+.modal-content button { 
+  padding: 6px; 
+  border-radius: 5px; 
+  border: none; 
+  cursor: pointer; 
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+#save-edit { 
+  background: #1f80e0; 
+  color: white; 
+}
+#save-edit:hover { transform: translateY(-1px); opacity: 0.9; }
+
+#close-modal { 
+  background: #dc3545; 
+  color: white; 
+}
+#close-modal:hover { transform: translateY(-1px); opacity: 0.9; }

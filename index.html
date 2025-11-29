@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Movie Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Movie Collection Manager</h1>
+
+  <!-- ADD MOVIE FORM -->
+  <form id="add-movie-form" class="form">
+    <input type="text" id="title" placeholder="Title" required />
+    <input type="text" id="genre" placeholder="Genre" required />
+    <input type="number" id="year" placeholder="Release Year" required />
+    <button type="submit">Add Movie</button>
+  </form>
+
+  <!-- SEARCH -->
+  <input type="text" id="search-input" placeholder="Search movies..." class="search-box"/>
+
+  <!-- MOVIE LIST -->
+  <div id="movie-list" class="movie-list"></div>
+
+  <!-- EDIT MODAL -->
+  <div id="edit-modal" class="modal">
+    <div class="modal-content">
+      <h3>Edit Movie</h3>
+      <input type="text" id="edit-title" placeholder="Title" />
+      <input type="text" id="edit-genre" placeholder="Genre" />
+      <input type="number" id="edit-year" placeholder="Year" />
+      <button id="save-edit">Save</button>
+      <button id="close-modal">Cancel</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
