@@ -1,40 +1,7 @@
 {
-  "movies": [
-    {
-      "id": "1",
-      "title": "Inception",
-      "genre": "Sci-Fi",
-      "year": 2010
-    },
-    {
-      "id": "2",
-      "title": "Pulp Fiction",
-      "genre": "Crime",
-      "year": 1994
-    },
-    {
-      "id": "3",
-      "title": "Dune",
-      "genre": "Sci-Fi",
-      "year": 2021
-    },
-    {
-      "id": "3f4c",
-      "title": "Drishyam",
-      "genre": "Crime",
-      "year": 2015
-    },
-    {
-      "id": "f9ba",
-      "title": "Tumbbad",
-      "genre": "Horror",
-      "year": 2018
-    },
-    {
-      "id": "f462",
-      "title": "Koi… Mil Gaya",
-      "genre": "Sci-Fi",
-      "year": 2003
-    }
-  ]
+"movies": [
+{ "id": 1, "title": "Inception", "genre": "Sci-Fi", "year": 2010 },
+{ "id": 2, "title": "Pulp Fiction", "genre": "Crime", "year": 1994 },
+{ "id": 3, "title": "Dune", "genre": "Sci-Fi", "year": 2021 }
+]
 }

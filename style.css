@@ -1,78 +1,96 @@
+/* -------------------- Dark Mode Base -------------------- */
 body {
-    font-family: Arial, sans-serif;
-    background: #f5f7fa;
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
     padding: 20px;
 }
 
-h1, h2 {
-    text-align: center;
+h1, h2, h3 {
+    color: #ffffff;
 }
 
+/* -------------------- Container -------------------- */
 .container {
     max-width: 900px;
     margin: auto;
 }
 
-.card {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 3px 7px rgba(0,0,0,0.1);
+/* -------------------- Forms & Inputs -------------------- */
+input, select, button {
+    padding: 10px;
+    margin: 6px 0;
+    border-radius: 6px;
+    border: 1px solid #333;
+    font-size: 14px;
 }
 
-input, button, select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 8px;
-    border-radius: 5px;
-    border: 1px solid #aaa;
+input, select {
+    background-color: #1f1f1f;
+    color: #ffffff;
+}
+
+input::placeholder {
+    color: #bbbbbb;
 }
 
 button {
-    background: #007bff;
-    color: white;
+    background-color: #6200EE;
+    color: #ffffff;
     border: none;
     cursor: pointer;
-}
-button:hover {
-    background: #0057c4;
+    transition: 0.2s;
 }
 
+button:hover {
+    background-color: #7b33ff;
+}
+
+/* -------------------- Cards -------------------- */
+.card {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #333;
+}
+
+/* -------------------- Horizontal Line -------------------- */
+hr {
+    border: 0;
+    border-top: 1px solid #333;
+    margin: 20px 0;
+}
+
+/* -------------------- Controls -------------------- */
 .controls {
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
     margin-bottom: 15px;
 }
 
+/* -------------------- Movie Grid -------------------- */
 .movie-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 15px;
 }
 
-.movie-card {
-    background: white;
+/* -------------------- Movie Item -------------------- */
+.movie-item {
+    background-color: #1f1f1f;
+    border: 1px solid #333;
     padding: 15px;
     border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-.movie-card h3 {
-    margin: 0 0 10px;
+.movie-item p {
+    margin: 0 0 10px 0;
 }
 
-.btn-row {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
+.movie-item button {
+    margin-right: 8px;
+    font-size: 13px;
 }
-
-.edit-btn, .delete-btn {
-    padding: 6px 10px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.edit-btn { background: #ffc107; }
-.delete-btn { background: #dc3545; color: white; }
