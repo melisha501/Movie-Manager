@@ -24,20 +24,15 @@
       "genre": "Drama",
       "year": 2020
     },
+    
     {
-      "title": "Pathaan",
-      "year": 2023,
-      "genre": "Action",
-      "id": "3"
-    },
-    {
-      "id": "8109",
+      "id": "3",
       "title": "Dhoom 3",
       "genre": "Heist",
       "year": 2013
     },
     {
-      "id": "b3d3",
+      "id": "4",
       "title": "Singham",
       "genre": "Crime",
       "year": 2011
