@@ -1,7 +1,46 @@
 {
-"movies": [
-{ "id": 1, "title": "Inception", "genre": "Sci-Fi", "year": 2010 },
-{ "id": 2, "title": "Pulp Fiction", "genre": "Crime", "year": 1994 },
-{ "id": 3, "title": "Dune", "genre": "Sci-Fi", "year": 2021 }
-]
+  "movies": [
+    {
+      "id": "1",
+      "title": "Inception",
+      "genre": "Sci-Fi",
+      "year": 2010
+    },
+    {
+      "id": "2",
+      "title": "Pulp Fiction",
+      "genre": "Crime",
+      "year": 1994
+    },
+    {
+      "id": "3",
+      "title": "Dune",
+      "genre": "Sci-Fi",
+      "year": 2021
+    },
+    {
+      "id": "63b9",
+      "title": "War",
+      "genre": "Thriller",
+      "year": 2019
+    },
+    {
+      "id": "1daf",
+      "title": "Baaghi 3",
+      "genre": "Drama",
+      "year": 2020
+    },
+    {
+      "id": "0753",
+      "title": "Pathaan",
+      "genre": "Action",
+      "year": 2023
+    },
+    {
+      "id": "2dba",
+      "title": "Satyameva Jayate",
+      "genre": "Crime",
+      "year": 2018
+    }
+  ]
 }
