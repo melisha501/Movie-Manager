@@ -1,41 +1,7 @@
 {
-  "movies": [
-    {
-      "title": "War",
-      "year": 2019,
-      "genre": "Thriller",
-      "id": "1"
-    },
-    {
-      "title": "Baaghi 3",
-      "year": 2020,
-      "genre": "Drama",
-      "id": "2"
-    },
-    {
-      "id": "1",
-      "title": "War",
-      "genre": "Thriller",
-      "year": 2019
-    },
-    {
-      "id": "2",
-      "title": "Baaghi 3",
-      "genre": "Drama",
-      "year": 2020
-    },
-    
-    {
-      "id": "3",
-      "title": "Dhoom 3",
-      "genre": "Heist",
-      "year": 2013
-    },
-    {
-      "id": "4",
-      "title": "Singham",
-      "genre": "Crime",
-      "year": 2011
-    }
-  ]
+"movies": [
+{ "id": 1, "title": "Inception", "genre": "Sci-Fi", "year": 2010 },
+{ "id": 2, "title": "Pulp Fiction", "genre": "Crime", "year": 1994 },
+{ "id": 3, "title": "Dune", "genre": "Sci-Fi", "year": 2021 }
+]
 }
