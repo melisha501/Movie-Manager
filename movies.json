@@ -1,7 +1,52 @@
 {
-"movies": [
-{ "id": 1, "title": "Inception", "genre": "Sci-Fi", "year": 2010 },
-{ "id": 2, "title": "Pulp Fiction", "genre": "Crime", "year": 1994 },
-{ "id": 3, "title": "Dune", "genre": "Sci-Fi", "year": 2021 }
-]
+  "movies": [
+    {
+      "id": 1,
+      "title": "Inception",
+      "genre": "Sci-Fi",
+      "year": 2010
+    },
+    {
+      "id": 2,
+      "title": "Pulp Fiction",
+      "genre": "Crime",
+      "year": 1994
+    },
+    {
+      "id": 3,
+      "title": "Dune",
+      "genre": "Sci-Fi",
+      "year": 2021
+    },
+    {
+      "id": "1",
+      "title": "Stree 2",
+      "genre": "Horror-Comedy",
+      "year": 2024
+    },
+    {
+      "id": "2",
+      "title": "Jawan",
+      "genre": "Drama",
+      "year": 2023
+    },
+    {
+      "id": "3",
+      "title": "Animal",
+      "genre": "Drama",
+      "year": 2023
+    },
+    {
+      "id": "4",
+      "title": "Tiger 3",
+      "genre": "Spy-Adventure",
+      "year": 2023
+    },
+    {
+      "id": "5",
+      "title": "Shaitaan",
+      "genre": "Horror",
+      "year": 2024
+    }
+  ]
 }
